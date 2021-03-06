@@ -3,22 +3,22 @@ var options = [
         nombre: 'Hacoaj',
         texto: 'Hacoaj'
     },
-    // {
-    //     nombre: 'Ioia',
-    //     texto: 'Ioias Life'
-    // },
-    // {
-    //     nombre: 'Cultura',
-    //     texto: 'Cultura general'
-    // },
-    // {
-    //     nombre: 'Random',
-    //     texto: 'Random'
-    // },
-    // {
-    //     nombre: 'SciTech',
-    //     texto: 'Ciencia y Tech'
-    // }
+    {
+        nombre: 'Ioia',
+        texto: 'Ioias Life'
+    },
+    {
+        nombre: 'Cultura',
+        texto: 'Cultura general'
+    },
+    {
+        nombre: 'Random',
+        texto: 'Random'
+    },
+    {
+        nombre: 'SciTech',
+        texto: 'Ciencia y Tech'
+    }
 ];
 
 var startAngle = 0;
