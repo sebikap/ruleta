@@ -1,0 +1,26 @@
+body {
+    background-color: rgb(0, 0, 0, 0.8);
+    font-family: 'Roboto', sans-serif;
+    /* font-size: 25px; */
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#spin {
+    color: rgb(255, 255, 255, 0.8);
+    background-color: rgb(0, 0, 0, 0.5);
+    font-size: 25px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+#spin:hover{
+    cursor: pointer;
+    background-color: rgb(0, 0, 0, 0.6);
+}
