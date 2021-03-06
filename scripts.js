@@ -1,31 +1,24 @@
-// var options = ["$100", "$10", "$25", "$250", "$30", "$1000", "$1", "$200", "$45", "$500", "$5", "$20", "Lose", "$1000000", "Lose", "$350", "$5", "$99"];
-// var options = ["Hacoaj", "Ioias Life", "Random", "Cultura general", "Ciencia y Tech"];
 var options = [
     {
         nombre: 'Hacoaj',
-        texto: 'Hacoaj',
-        contador: 0
+        texto: 'Hacoaj'
     },
-    {
-        nombre: 'Ioia',
-        texto: 'Ioias Life',
-        contador: 0
-    },
-    {
-        nombre: 'Cultura',
-        texto: 'Cultura general',
-        contador: 0
-    },
-    {
-        nombre: 'Random',
-        texto: 'Random',
-        contador: 0
-    },
-    {
-        nombre: 'SciTech',
-        texto: 'Ciencia y Tech',
-        contador: 0
-    }
+    // {
+    //     nombre: 'Ioia',
+    //     texto: 'Ioias Life'
+    // },
+    // {
+    //     nombre: 'Cultura',
+    //     texto: 'Cultura general'
+    // },
+    // {
+    //     nombre: 'Random',
+    //     texto: 'Random'
+    // },
+    // {
+    //     nombre: 'SciTech',
+    //     texto: 'Ciencia y Tech'
+    // }
 ];
 
 var startAngle = 0;
@@ -38,24 +31,13 @@ var spinTimeTotal = 0;
 
 var ctx;
 
-var preguntas = [];
-
-function loadQuestions() {
-    preguntas.push({categoria: 'Hacoaj', texto: 'Hacoaj 1'});
-    preguntas.push({categoria: 'Hacoaj', texto: 'Hacoaj 2'});
-    
-    preguntas.push({categoria: 'Ioia', texto: 'Ioia 1'});
-    preguntas.push({categoria: 'Ioia', texto: 'Ioia 2'});
-    
-    preguntas.push({categoria: 'Cultura', texto: 'Cultura 1'});
-    preguntas.push({categoria: 'Cultura', texto: 'Cultura 2'});
-    
-    preguntas.push({categoria: 'Random', texto: 'Random 1'});
-    preguntas.push({categoria: 'Random', texto: 'Random 2'});
-    
-    preguntas.push({categoria: 'SciTech', texto: 'SciTech 1'});
-    preguntas.push({categoria: 'SciTech', texto: 'SciTech 2'});
-}
+var colors = [
+    '#543210',
+    '#654321',
+    '#765432',
+    '#876543',
+    '#987654',
+]
 
 function byte2Hex(n) {
     var nybHexString = "0123456789ABCDEF";
@@ -94,12 +76,12 @@ function drawRouletteWheel() {
         ctx.shadowColor = 'black';
         ctx.shadowBlur = '2';
         ctx.shadowOffsetX = '0';
-        ctx.shadowOffsetY = '2';
+        // ctx.shadowOffsetY = '2';
 
         for(var i = 0; i < options.length; i++) {
             var angle = startAngle + i * arc;
-            //ctx.fillStyle = colors[i];
-            ctx.fillStyle = getColor(i, options.length);
+            ctx.fillStyle = colors[i];
+            // ctx.fillStyle = getColor(i, options.length);
 
             ctx.beginPath();
             ctx.arc(250, 250, outsideRadius, angle, angle + arc, false);
@@ -156,13 +138,40 @@ function mostrarPregunta(categoria){
     // alert(categoria.texto);
     const pregunta = siguientePregunta(categoria);
     if(pregunta){
-        alert(pregunta.texto);
+        let modal = document.getElementById('modal');
+        // alert(pregunta.texto);
+        let html = '';
+        html += '<span class="botonCerrar">';
+        html += 'X';
+        html += '</span>';
+        html += '<h3>';
+        html += categoria.texto;
+        html += '</h3>';
+        html += '<p>';
+        html += pregunta.texto;
+        html += '</p>';
+
+        modal.innerHTML = html;
+        let botonCerrar = document.getElementsByClassName('botonCerrar')[0];
+        botonCerrar.addEventListener('click', ocultarModal);
+        // modal.classList.remove('hide');
+        modal.classList.add('show');
+    }
+}
+
+function ocultarModal(){
+    let modal = document.getElementById('modal');
+    // modal.classList.add('hide');
+    if (options.length > 0){
+        modal.classList.remove('show');
+    } else {
+        termino();
     }
 }
 
 function siguientePregunta(categoria){
     const preguntasCategoria =  preguntas.filter(preg => preg.categoria == categoria.nombre);
-    const pregunta = preguntasCategoria[categoria.contador];
+    const pregunta = preguntasCategoria[0];
     eliminarPregunta(pregunta);
     quedanPreguntas(categoria);
     return pregunta;
@@ -178,6 +187,19 @@ function quedanPreguntas(categoria){
         arc = Math.PI / (options.length / 2);
         drawRouletteWheel();
     }
+}
+
+function termino() {
+    let modal = document.getElementById('modal');
+    
+    let html = '';
+    html += '<h1>';
+    html += 'Termino!';
+    html += '</h1>';
+
+    modal.innerHTML = html;
+    
+    // modal.classList.add('show');
 }
 
 function stopRotateWheel() {
