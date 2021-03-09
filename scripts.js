@@ -1,23 +1,39 @@
 var options = [
     {
-        nombre: 'Hacoaj',
-        texto: 'Hacoaj'
+        nombre: 'Psicoanalisis',
+        texto: 'Psicoanálisis'
     },
     {
-        nombre: 'Ioia',
-        texto: 'Ioias Life'
+        nombre: 'Cognitivo',
+        texto: 'Cognitivo\nConductual'
     },
     {
-        nombre: 'Cultura',
-        texto: 'Cultura general'
+        nombre: 'Sistemico',
+        texto: 'Sistémico'
     },
     {
-        nombre: 'Random',
-        texto: 'Random'
+        nombre: 'Humanista',
+        texto: 'Humanista\nExistencial'
     },
     {
-        nombre: 'SciTech',
-        texto: 'Ciencia y Tech'
+        nombre: 'Integrativo',
+        texto: 'Integrativo'
+    },
+    {
+        nombre: 'Psicoeducacional',
+        texto: 'Psicoeducacional'
+    },
+    {
+        nombre: 'Psicolaboral',
+        texto: 'Psicolaboral'
+    },
+    {
+        nombre: 'Social',
+        texto: 'Psicología\nSocial/Comunitaria'
+    },
+    {
+        nombre: 'Clinica',
+        texto: 'Viñeta\nClínica'
     }
 ];
 
@@ -32,11 +48,15 @@ var spinTimeTotal = 0;
 var ctx;
 
 var colors = [
-    '#543210',
-    '#654321',
-    '#765432',
-    '#876543',
-    '#987654',
+    '#001100',
+    '#002200',
+    '#005500',
+    '#110000',
+    '#220000',
+    '#550000',
+    '#000011',
+    '#000055',
+    '#000033',
 ]
 
 function byte2Hex(n) {
@@ -64,14 +84,14 @@ function getColor(item, maxitem) {
 function drawRouletteWheel() {
     var canvas = document.getElementById("canvas");
     if (canvas.getContext) {
-        var outsideRadius = 200;
-        var textRadius = 160;
-        var insideRadius = 125;
+        var outsideRadius = 240;
+        var textRadius = 210;
+        var insideRadius = 180;
 
         ctx = canvas.getContext("2d");
         ctx.clearRect(0,0,500,500);
 
-        ctx.font = "bold 20px sans-serif";
+        ctx.font = "bold 11px sans-serif";
         
         ctx.shadowColor = 'black';
         ctx.shadowBlur = '2';
@@ -97,6 +117,7 @@ function drawRouletteWheel() {
             ctx.rotate(angle + arc / 2 + Math.PI / 2);
             var text = options[i].texto;
             ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
+
             ctx.restore();
         } 
 
