@@ -215,7 +215,7 @@ function termino() {
     
     let html = '';
     html += '<h1>';
-    html += 'Termino!';
+    html += 'Terminó!';
     html += '</h1>';
 
     modal.innerHTML = html;
